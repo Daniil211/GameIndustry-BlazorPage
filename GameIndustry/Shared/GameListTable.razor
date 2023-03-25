@@ -11,11 +11,25 @@
         <tbody>
             @if(Games == null)
             {
-                <tr>Loadind data...</tr>
+                @if (NullList != null)
+                {
+                    @NullList
+                }
+                else
+                {
+                    <img src="https://art.pixilart.com/7badccc6206bf0f.gif" height="200" />
+                }
             }
             else if(Games.Count == 0)
             {
-                <tr>No items im array</tr>
+                @if (NullList != null)
+                {
+                    @EmptyList
+                }
+                else
+                {
+                    <img src="https://opengameart.org/sites/default/files/styles/medium/public/Battery%20Empty.gif" height="200"/>   
+                }
             }
             else
             {
@@ -36,6 +50,10 @@
 
 @code {
     [Parameter] public List<Game> Games { get; set; }
+
+    [Parameter] public RenderFragment NullList { get; set; }
+
+    [Parameter] public RenderFragment EmptyList { get; set; }
 
     bool displayButtons = false;
 
