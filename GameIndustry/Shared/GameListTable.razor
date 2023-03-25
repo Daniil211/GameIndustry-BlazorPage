@@ -1,0 +1,46 @@
+﻿<div class="table-responsive">
+    <table class="table table-striped">
+        <thead class="thead-light">
+            <tr>
+                <th>Name</th>
+                <th>Genre</th>
+                <th>Release Date</th>
+                <th><input type="checkbox" @bind = "displayButtons"/></th>
+            </tr>
+        </thead>
+        <tbody>
+            @if(Games == null)
+            {
+                <tr>Loadind data...</tr>
+            }
+            else if(Games.Count == 0)
+            {
+                <tr>No items im array</tr>
+            }
+            else
+            {
+                @foreach (var item in Games)
+                {
+                   @* <tr>
+                        <td>@item.Name</td>
+                        <td>@item.Genre</td>
+                        <td>@item.ReleaseDate.ToString("dd.MM.yyyy")</td>
+                    </tr>*@
+                    <IndividualGame Game="item" IsTable="true" DisplayButtons="displayButtons"/>
+                }
+            }
+
+        </tbody>
+    </table> 
+</div>
+
+@code {
+    [Parameter] public List<Game> Games { get; set; }
+
+    bool displayButtons = false;
+
+    void DeleteTheGame(Game game)
+    {
+        Games.Remove(game);
+    }
+}
