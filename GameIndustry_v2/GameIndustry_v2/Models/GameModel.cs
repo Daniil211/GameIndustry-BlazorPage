@@ -4,7 +4,7 @@ namespace GameIndustry_v2.Models
 {
     public class GameModel
     {
-        public int Id { get; set; }
+        public int Id { get; set; } = 1;
 
         public string Name { get; set; }
 

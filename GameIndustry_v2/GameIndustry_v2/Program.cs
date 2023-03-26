@@ -1,4 +1,6 @@
+using GameIndustry.Repository;
 using GameIndustry_v2.Data;
+using GameIndustry_v2.Data.Repository;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 
@@ -8,6 +10,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddSingleton<WeatherForecastService>();
+
+builder.Services.AddTransient<IRepository, MockGamesRepository>();
 
 var app = builder.Build();
 
