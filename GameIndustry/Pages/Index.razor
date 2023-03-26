@@ -15,8 +15,7 @@
 </div>
 
 
-<GameListTable Games="games"/>
-
+<GameListTable Games="games" />
 
 <IndividualGame Game="oneGameToShow" IsTable="false" DisplayButtons="true" SwitchGame="ShowNewGame"/>
 
@@ -31,6 +30,9 @@
 
     Random rnd;
     Game oneGameToShow;
+
+    //step 1
+    //GameListTable gameList;
 
     protected async override Task OnInitializedAsync()
     {
@@ -66,6 +68,7 @@
 
     void AddNewGame()
     {
+        //gameList.DoSomeThing();
         games.Add(new Game() { Name = "Game for test", Genre = "Test", ReleaseDate = DateTime.Today });
     }
 }
