@@ -14,6 +14,15 @@
                     </div>
                 </div>
             }
+
+            @if(Game.Name.Equals("The Witcher 3") && AppStyle.WitcherWords != null)
+            {
+                <div class="row mt-3">
+                    <div class="col alert alert-light text-center">
+                        @AppStyle.WitcherWords[rnd.Next(0, AppStyle.WitcherWords.Count)]
+                    </div>
+                </div>
+            }
         </div>
     </div>
 }
@@ -37,12 +46,22 @@ else
 }
 
 @code {
-    [Parameter] public Game Game { get; set; }
-    [Parameter] public bool IsTable { get; set; }
 
-    [Parameter] public bool DisplayButtons { get; set; } = false;
-    [Parameter] public EventCallback<Game> DeleteGame { get; set; }
-    [Parameter] public EventCallback SwitchGame { get; set; }
+    [Parameter] 
+    public Game Game { get; set; }
+
+    [Parameter] 
+    public bool IsTable { get; set; }
+
+    [Parameter] 
+    public bool DisplayButtons { get; set; } = false;
+
+    [Parameter] 
+    public EventCallback<Game> DeleteGame { get; set; }
+
+    [Parameter] 
+    public EventCallback SwitchGame { get; set; }
+
     //string message;
 
     //void Delete()
@@ -50,4 +69,8 @@ else
     //    //Delete logic...
     //    message = $"Game {Game.Name} deleted!";
     //}
+    [CascadingParameter]
+    public AppStyle AppStyle { get; set; }
+
+    Random rnd = new Random(DateTime.Now.Millisecond);
 }
