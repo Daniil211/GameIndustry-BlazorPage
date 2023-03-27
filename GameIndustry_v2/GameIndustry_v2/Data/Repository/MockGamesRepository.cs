@@ -5,7 +5,9 @@ namespace GameIndustry.Repository
 {
     public class MockGamesRepository : IRepository
     {
-        List<GameModel> _GameModels;
+        readonly List<GameModel> _GameModels;
+        private readonly List<Genre> _genres;
+
 
         public MockGamesRepository()
         {
@@ -33,11 +35,58 @@ namespace GameIndustry.Repository
                 Image = "https://cdn1.epicgames.com/c12a5687fb024192999b2d22c555d4c6/offer/DAH_Portrait-1200x1600-2e2b6bca291228e4df252c4857664408.jpg"
             }
             };
+            _genres = new List<Genre>()
+            {
+                new Genre()
+                {
+                    Id=0,
+                    Name="RPG"
+                },
+                new Genre()
+                {
+                    Id=1,
+                    Name="Action"
+                },
+                new Genre()
+                {
+                    Id=2,
+                    Name="Horror"
+                },
+                new Genre()
+                {
+                    Id=3,
+                    Name="Paltformer"
+                }
+            };
         }
 
         public List<GameModel> GetAllGames()
         {
             return _GameModels;
+        }
+
+        public List<Genre> GetAllGenres()
+        {
+            return _genres;
+        }
+
+        public Genre GetGenreByID(int id)
+        {
+            return _genres.FirstOrDefault(X=>X.Id.Equals(id));
+        }
+
+        public bool EditGenre(Genre editedGenre)
+        {
+            var oldGenre = _genres.FirstOrDefault(x => x.Id.Equals(editedGenre.Id));
+            if (oldGenre is not null)
+            {
+                oldGenre = editedGenre;
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }

@@ -1,7 +1,21 @@
 ﻿@page "/genres/create"
 
-<h3>CreateGenre</h3>
+<div class="row">
+    <div class="col">
+        <h1 class="text-info">Create Genre</h1>
+    </div>
+</div>
+<div class="row">
+    <div class="col-6">
+        <FormForGenre Genre="genre" OnValidSubmit="Create" />
+    </div>
+</div>
 
 @code {
+    Genre genre = new();
 
+    void Create()
+    {
+        Console.WriteLine(genre.Name);
+    }
 }
