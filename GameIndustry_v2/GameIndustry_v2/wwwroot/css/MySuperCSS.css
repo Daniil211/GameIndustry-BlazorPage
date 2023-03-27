@@ -25,3 +25,11 @@
     background-color: #e9e6ff;
     border-radius: 0 0 5px 5px;
 }
+.custom-checkbox .custom-control-input:checked ~ .custom-control-label::before {
+    background-color: #caca4c;
+}
+
+.custom-control .custom-control-input:checked ~ .custom-control-label::before {
+    color: #fff;
+    background-color: #caca4c;
+}
