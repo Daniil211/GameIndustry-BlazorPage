@@ -25,7 +25,7 @@
     background-color: #e9e6ff;
     border-radius: 0 0 5px 5px;
 }
-.custom-checkbox .custom-control-input:checked ~ .custom-control-label::before {
+./*custom-checkbox .custom-control-input:checked ~ .custom-control-label::before {
     background-color: #caca4c;
 }
 
@@ -33,3 +33,15 @@
     color: #fff;
     background-color: #caca4c;
 }
+
+.form-group {
+    margin-bottom: $form-group-margin-bottom;
+}
+
+.form-group {
+    display: flex;
+    flex: 0 0 auto;
+    flex-flow: row wrap;
+    align-items: center;
+    margin-bottom: 0;
+}*/

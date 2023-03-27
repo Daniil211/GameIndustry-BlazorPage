@@ -3,6 +3,7 @@ using GameIndustry_v2.Data;
 using GameIndustry_v2.Data.Repository;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
+using Tewr.Blazor.FileReader;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +13,8 @@ builder.Services.AddServerSideBlazor();
 builder.Services.AddSingleton<WeatherForecastService>();
 
 builder.Services.AddTransient<IRepository, MockGamesRepository>();
+
+builder.Services.AddFileReaderService(options => options.InitializeOnFirstCall = true);
 
 var app = builder.Build();
 
