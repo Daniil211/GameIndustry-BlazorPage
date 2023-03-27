@@ -9,6 +9,10 @@
     
     <InputImage Label="Image" OnImageFileSelected="ImageFileSelectedHandler" ImageUrl="@imageUrl"/>
     
+    <div class="form-group form-markdown">
+        <MarkdownInput @bind-Value="Developer.StudioDescription" Label="Description" OnFor="(() => Developer.StudioDescription)"/>
+    </div>
+
     <button type="submit" class="btn btn-primary">Create New Studio</button>
 </EditForm>
 
