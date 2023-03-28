@@ -19,7 +19,7 @@ else
     <div class="row ">
         @foreach (var item in ListOfItems)
         {
-            <IndividualGame Game="item"/>//FIX
+            <IndividualGame Game="item" OnDeleteGame="DeleteGame"/>
         }
     </div>
 }
@@ -27,4 +27,9 @@ else
 @code {
     [Parameter]
     public List<GameModel> ListOfItems { get; set; }
+
+    void DeleteGame(GameModel game)
+    {
+        ListOfItems.Remove(game);
+    }
 }

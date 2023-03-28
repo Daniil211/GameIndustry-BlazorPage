@@ -5,8 +5,10 @@ namespace GameIndustry_v2.Data.Repository
     public interface IRepository
     {
         List<GameModel> GetAllGames();
+        bool CreateNewGame(GameModel newGame);
+        GameModel GetGameById(int id);
         List<Genre> GetAllGenres();
-        Genre GetGenreByID(int id);
+        Genre GetGenreById(int id);
         bool EditGenre(Genre editedGenre);
     }
 }

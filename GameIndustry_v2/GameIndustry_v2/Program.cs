@@ -3,6 +3,7 @@ using GameIndustry_v2.Data;
 using GameIndustry_v2.Data.Repository;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
+using System.Diagnostics.Metrics;
 using Tewr.Blazor.FileReader;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,8 +13,18 @@ builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddSingleton<WeatherForecastService>();
 
-builder.Services.AddTransient<IRepository, MockGamesRepository>();
+builder.Services.AddSingleton<IRepository, MockGamesRepository>();
+//Если у вас не отображает ваши изменения  после создания новой игры
+//-то там где мы подключали   в сервисы IRepository, замените AddTransient на AddSingletone ,незачто
 
+
+//Не стоит так делать, ибо Singleton создаёт один экземпляр сервиса на всех.
+//Просто обновите данные в массиве с играми. Не забывайте, что в базу добавляется новая игра, а вот массив, из которого выводим данные 
+//сам не обновится. Поэтому делаем повторный запрос на получения всех данных из базы и всё будет отображаться.
+
+//ну мы же "подменяем БД" в реальном кейсе мы бы обращались к ней, и брали от туда все, я
+//просто делал все как у вас и у меня не отрисовывало новую игру ,а страничку обновляло, я прошел дебагом и понял что на выходе
+//оно получает "5ую" игу  но когда обращаеться к нашей  "БД" то оно не обновляет существующий экземпляр,а делает новый на 4 элемента...
 builder.Services.AddFileReaderService(options => options.InitializeOnFirstCall = true);
 
 var app = builder.Build();
