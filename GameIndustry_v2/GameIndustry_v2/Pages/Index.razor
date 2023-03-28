@@ -2,7 +2,7 @@
 @page "/index"
 @inject IRepository repository
 
-<Typeahead OnSearchHandler="SearchHandler">
+<Typeahead OnSearchHandler="SearchHandler" OnPlaceHolder="Type some here...">
     <ResultTemplate>
         @context
     </ResultTemplate>
