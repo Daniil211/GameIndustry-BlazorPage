@@ -11,13 +11,20 @@
 
 <div class="row">
     <div class="col">
-       <GameForm Game="game" OnValidSubmit="AddNewGame"></GameForm>
+       <GameForm Game="game" OnValidSubmit="AddNewGame" NotSelectedGenres="notSelectedGenres"></GameForm>
     </div>
 </div>
 
 @code {
 
     GameModel game = new();
+
+    List<Genre> notSelectedGenres = new();
+
+    protected override void OnInitialized()
+    {
+        notSelectedGenres = _db.GetAllGenres();
+    }
 
     void AddNewGame()
     {

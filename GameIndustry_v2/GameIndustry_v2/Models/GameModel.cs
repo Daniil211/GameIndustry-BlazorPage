@@ -14,8 +14,7 @@ namespace GameIndustry_v2.Models
         public string Description { get; set; }
         public bool InSale { get; set; }
         public string GamePlayVideo { get; set; }
-
-        public int GenreId { get; set; }
+        public List<GamesGenres> GamesGenres { get; set; } = new List<GamesGenres>();
         [Required]
         public DateTime? ReleaseDate { get; set; }
 

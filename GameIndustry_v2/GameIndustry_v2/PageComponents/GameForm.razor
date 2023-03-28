@@ -1,4 +1,5 @@
-﻿<EditForm Model="Game" OnValidSubmit="OnValidSubmit">
+﻿@using GameIndustry_v2.Helpers
+<EditForm Model="Game" OnValidSubmit="OnValidSubmit">
     <DataAnnotationsValidator />
 
     <div class="form-group">
@@ -34,6 +35,11 @@
                        Label="Description"
                        OnFor="(() => Game.Description)" />
     </div>
+    
+    <div clas="form-group">
+        <label>Game Genres</label>
+        <MultipleSelector OnSelected="Selected" OnNotSelected="NotSelected"/>
+    </div>
 
     <button class="btn btn-primary" type="submit">Save Changes</button>
 </EditForm>
@@ -44,10 +50,24 @@
     [Parameter]
     public EventCallback OnValidSubmit { get; set; }
 
+    [Parameter]
+    public List<Genre> SelectedGenres { get; set; } = new();
+    [Parameter]
+    public List<Genre> NotSelectedGenres { get; set; } = new();
+
+    [Parameter]
+    public List<MultipleSelectorHelperModel> Selected { get; set; } = new();
+    [Parameter]
+    public List<MultipleSelectorHelperModel> NotSelected { get; set; } = new();
+
     string imageUrl;
 
     protected override void OnInitialized()
     {
+        Selected = SelectedGenres.Select(x => new MultipleSelectorHelperModel(x.Id.ToString(), x.Name)).ToList();
+        NotSelected = NotSelectedGenres.Select(x => new MultipleSelectorHelperModel(x.Id.ToString(), x.Name)).ToList();
+
+
         if (Game.ReleaseDate is null)
             Game.ReleaseDate = DateTime.Now;
 

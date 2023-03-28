@@ -8,5 +8,6 @@ namespace GameIndustry_v2.Models
         [Required]
         [MaxLength(50)]
         public string Name { get; set; }
+        public List<GamesGenres> GamesGenres { get; set; } = new List<GamesGenres>();
     }
 }

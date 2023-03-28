@@ -37,7 +37,16 @@
     width: 500px;
     height: 500px;
 }
-
+.selectable-list {
+    padding: 20px;
+    border: 1px groove #6c757d;
+    border-radius: 3px;
+    min-width: 150px;
+}
+.list-group-item:hover {
+    cursor: pointer;
+    border: 1px dashed #000;
+}
 /*.typeahead {
     position: relative;
     width: 100%;
