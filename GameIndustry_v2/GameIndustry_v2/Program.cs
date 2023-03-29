@@ -1,19 +1,23 @@
-using GameIndustry.Repository;
 using GameIndustry_v2.Data;
 using GameIndustry_v2.Data.Repository;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using System.Diagnostics.Metrics;
+using DbAccess;
+using Microsoft.EntityFrameworkCore;
 using Tewr.Blazor.FileReader;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+    options.UseSqlServer("name=ConnectionStrings:DefaultConnection"));
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddSingleton<WeatherForecastService>();
 
-builder.Services.AddSingleton<IRepository, MockGamesRepository>();
+builder.Services.AddScoped<IRepository, SqlGameRepository>();
+//builder.Services.AddSingleton<IRepository, MockGamesRepository>();
 //Если у вас не отображает ваши изменения  после создания новой игры
 //-то там где мы подключали   в сервисы IRepository, замените AddTransient на AddSingletone ,незачто
 

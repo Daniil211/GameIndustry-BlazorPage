@@ -1,4 +1,4 @@
-﻿namespace GameIndustry_v2.Models
+﻿namespace DataAccessLib.Models
 {
     public class GameDeveloper
     {

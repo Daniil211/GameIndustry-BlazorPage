@@ -1,11 +1,12 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.Security.AccessControl;
+using System.ComponentModel.DataAnnotations.Schema;
+using DbAccess.Models;
 
-namespace GameIndustry_v2.Models
+namespace DbAccess.Models
 {
     public class GameModel
     {
-        public int Id { get; set; } = 1;
+        public int Id { get; set; }
         [Required]
         [MinLength(3), MaxLength(50)]
         public string Name { get; set; }
@@ -13,12 +14,20 @@ namespace GameIndustry_v2.Models
         [MinLength(3), MaxLength(50)]
         public string Description { get; set; }
         public bool InSale { get; set; }
-        public string GamePlayVideo { get; set; }
-        public List<GamesGenres> GamesGenres { get; set; } = new List<GamesGenres>();
+        public string? GamePlayVideo { get; set; }
+
+        public IEnumerable<Genre> Genres { get; set; }
+
+        //public List<GamesGenres> GamesGenres { get; set; } = new List<GamesGenres>();
         [Required]
         public DateTime? ReleaseDate { get; set; }
 
         public string Image { get; set; }
+        //Foreign Key
+        public int? DeveloperId { get; set; }
+        [ForeignKey(nameof(DeveloperId))]
+        //Navigation property
+        public GameDeveloper? Developer { get; set; }
 
         public string ShortName
         {

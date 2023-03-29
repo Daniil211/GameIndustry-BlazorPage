@@ -1,4 +1,4 @@
-﻿using GameIndustry_v2.Models;
+﻿using DbAccess.Models;
 
 namespace GameIndustry_v2.Data.Repository
 {

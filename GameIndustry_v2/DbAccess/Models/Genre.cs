@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace GameIndustry_v2.Models
+namespace DbAccess.Models
 {
     public class Genre
     {
@@ -8,6 +8,7 @@ namespace GameIndustry_v2.Models
         [Required]
         [MaxLength(50)]
         public string Name { get; set; }
-        public List<GamesGenres> GamesGenres { get; set; } = new List<GamesGenres>();
+        //public List<GamesGenres> GamesGenres { get; set; } = new List<GamesGenres>();
+        public IEnumerable<GameModel> Games { get; set; }
     }
 }
