@@ -15,7 +15,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddSingleton<WeatherForecastService>();
-
+builder.Services.AddAntDesign();
 builder.Services.AddScoped<IRepository, SqlGameRepository>();
 //builder.Services.AddSingleton<IRepository, MockGamesRepository>();
 //Если у вас не отображает ваши изменения  после создания новой игры
