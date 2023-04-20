@@ -5,7 +5,9 @@ VisualStudioVersion = 17.4.33403.182
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GameIndustry_v2", "GameIndustry_v2\GameIndustry_v2.csproj", "{DFAA30BD-EA2E-4230-8D60-53F38AEBD78D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DbAccess", "DbAccess\DbAccess.csproj", "{0412DF22-4A97-40B0-B272-C17B06B555DF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DbAccess", "DbAccess\DbAccess.csproj", "{0412DF22-4A97-40B0-B272-C17B06B555DF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameIndustry_v3", "GameIndustry_v3\GameIndustry_v3.csproj", "{E05C30CC-5B9B-42A7-BB1C-F8F57A7019EE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{0412DF22-4A97-40B0-B272-C17B06B555DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0412DF22-4A97-40B0-B272-C17B06B555DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0412DF22-4A97-40B0-B272-C17B06B555DF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E05C30CC-5B9B-42A7-BB1C-F8F57A7019EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E05C30CC-5B9B-42A7-BB1C-F8F57A7019EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E05C30CC-5B9B-42A7-BB1C-F8F57A7019EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E05C30CC-5B9B-42A7-BB1C-F8F57A7019EE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
