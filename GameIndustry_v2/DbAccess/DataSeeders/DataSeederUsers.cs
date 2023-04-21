@@ -7,20 +7,6 @@ namespace Application.Persistence.DataSeeders
     {
         public static ModelBuilder SeedData(ModelBuilder modelBuilder)
         {
-            List<Role> Roles = new()
-            {
-                new()
-                {
-                    Id = 1,
-                    Name = "Admin"
-                },
-                new()
-                {
-                    Id = 2,
-                    Name = "User"
-                }
-            };
-
             List<User> Users = new()
             {
                 new()
@@ -29,7 +15,8 @@ namespace Application.Persistence.DataSeeders
                     Username = "User1",
                     Password = "User1",
                     Age = 19,
-                    IsPremiumMember = false
+                    IsPremiumMember = false,
+                    Role = "User"
                 },
                 new()
                 {
@@ -37,7 +24,8 @@ namespace Application.Persistence.DataSeeders
                     Username = "User2",
                     Password = "User2",
                     Age = 10,
-                    IsPremiumMember = true
+                    IsPremiumMember = true,
+                    Role = "User"
                 },
                 new()
                 {
@@ -45,35 +33,11 @@ namespace Application.Persistence.DataSeeders
                     Username = "User3",
                     Password = "User3",
                     Age = 20,
-                    IsPremiumMember = true
+                    IsPremiumMember = true,
+                    Role = "Admin"
                 }
             };
-
-            List<UsersRole> UsersRoles = new()
-            {
-                new()
-                {
-                    Id = 1,
-                    UserId = Users[0].Id,
-                    RoleId = Roles[0].Id
-                },
-                new()
-                {
-                    Id = 2,
-                    UserId = Users[0].Id,
-                    RoleId = Roles[1].Id
-                },
-                new()
-                {
-                    Id = 3,
-                    UserId = Users[1].Id,
-                    RoleId = Roles[1].Id
-                },
-            };
-
-            modelBuilder.Entity<Role>().HasData(Roles);
             modelBuilder.Entity<User>().HasData(Users);
-            modelBuilder.Entity<UsersRole>().HasData(UsersRoles);
 
             return modelBuilder;
         }

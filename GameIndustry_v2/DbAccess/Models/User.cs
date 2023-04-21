@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.Text.Json.Serialization;
 
 namespace Application.Persistence.Models;
 
@@ -17,6 +16,5 @@ public class User
 
     public bool IsPremiumMember { get; set; }
 
-    [JsonIgnore]
-    public virtual List<UsersRole>? UsersRoles { get; set; }
+    public string? Role { get; set; }
 }

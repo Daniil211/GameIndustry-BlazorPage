@@ -1,6 +1,9 @@
 using Application.Persistence;
 using GameIndustry_v2.Data;
+using GameIndustry_v2.Data.Authentication;
 using GameIndustry_v2.Data.Repository;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.EntityFrameworkCore;
 using Tewr.Blazor.FileReader;
 
@@ -13,10 +16,27 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+builder.Services.AddScoped<IApplicationDbContext, ApplicationDbContext>();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddSingleton<WeatherForecastService>();
 builder.Services.AddAntDesign();
 builder.Services.AddScoped<IRepository, SqlGameRepository>();
+
+builder.Services.AddScoped<WebsiteAuthenticator>();
+builder.Services.AddScoped<AuthenticationStateProvider>(sp => sp.GetRequiredService<WebsiteAuthenticator>());
+builder.Services.AddAuthorization(config =>
+{
+    config.AddPolicy("CanBuyAlcohol", policy =>
+    {
+        policy.AddRequirements(new AdultRequirement());
+        policy.RequireClaim("IsPremiumMember", true.ToString());
+    });
+
+    config.AddPolicy("OverAge", policy => policy.AddRequirements(new OverAgeRequirement()));
+});
+builder.Services.AddSingleton<IAuthorizationHandler, AdultRequirementHandler>();
+builder.Services.AddSingleton<IAuthorizationHandler, OverAgeRequirementHandler>();
+
 //builder.Services.AddSingleton<IRepository, MockGamesRepository>();
 //Если у вас не отображает ваши изменения  после создания новой игры
 //-то там где мы подключали   в сервисы IRepository, замените AddTransient на AddSingletone ,незачто
