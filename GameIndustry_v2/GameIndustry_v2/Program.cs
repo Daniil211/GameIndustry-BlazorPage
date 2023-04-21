@@ -1,16 +1,16 @@
+using DbAccess;
 using GameIndustry_v2.Data;
 using GameIndustry_v2.Data.Repository;
-using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Web;
-using System.Diagnostics.Metrics;
-using DbAccess;
 using Microsoft.EntityFrameworkCore;
 using Tewr.Blazor.FileReader;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseSqlServer("name=ConnectionStrings:DefaultConnection"));
+    options.UseMySql(builder.Configuration["ConnectionStrings:DbConnection"], new MySqlServerVersion(new Version(8, 0, 25)),
+        options => options.EnableRetryOnFailure())
+);
+
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
