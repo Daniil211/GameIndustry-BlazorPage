@@ -56,5 +56,20 @@ namespace GameIndustry_v2.Data.Repository
             var developers = _db.GameDevelopers.ToList();
             return developers;
         }
+        //public List<GameModel> RemoveGame()
+        //{
+        //    var game = _db.GameModels.ToList();
+        //    _db.Remove(game);
+        //    _db.SaveChanges();
+        //    return game;
+        //}
+        public List<GameModel> RemoveGame(GameModel game)
+        {
+           // var games = _db.GameModels.ToList();
+            _db.Remove(game);
+            _db.SaveChanges();
+            var games = _db.GameModels.ToList();
+            return games;
+        }
     }
 }

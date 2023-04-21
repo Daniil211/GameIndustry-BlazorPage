@@ -112,6 +112,10 @@ namespace GameIndustry_v2.Data.Repository
         }
 
 
+        public List<GameModel> RemoveGame(GameModel game)
+        {
+            throw new NotImplementedException();
+        }
 
         public bool EditGenre(Genre editedGenre)
         {
