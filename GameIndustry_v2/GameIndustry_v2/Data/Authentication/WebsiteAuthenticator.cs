@@ -56,6 +56,18 @@ namespace GameIndustry_v2.Data.Authentication
             NotifyAuthenticationStateChanged(Task.FromResult(new AuthenticationState(principal)));
         }
 
+        public async Task RegAsync(RegFormModel regFormModel)
+        {
+            _context.Users.Add(new User()
+            {
+                Username = regFormModel.Name,
+                Password = regFormModel.Password,
+                Role = regFormModel.Role
+            });
+
+            ((ApplicationDbContext)_context).SaveChanges();
+        }
+
         public async Task LogoutAsync()
         {
             await _protectedLocalStorage.DeleteAsync("identity");

@@ -1,17 +1,26 @@
 ﻿@using GameIndustry_v2.Data.Authentication
+@inject IMessageService _message
 @inject WebsiteAuthenticator WebsiteAuthenticator
 @page "/"
 
 <AuthorizeView Context="Account">
     <NotAuthorized>
+        <div>
+            <Switch @bind-Checked="switchValue" />
+        </div>
+        Войти/Зарегаться
+        @if(!switchValue)
+        {
         <EditForm Model="LoginFormModel" Context="Login">
             <div>
-                <label> Username: 
+                <label>
+                    Username:
                     <InputText @bind-Value="LoginFormModel.Username"></InputText>
                 </label>
             </div>
             <div>
-                <label> Password:
+                <label>
+                    Password:
                     <InputText type="password" @bind-Value="LoginFormModel.Password"></InputText>
                 </label>
             </div>
@@ -19,6 +28,39 @@
                 <button @onclick="TryLogin">Submit</button>
             </div>
         </EditForm>
+        }
+        else
+        {
+        <EditForm Model="regFormModel" Context="Reg">
+            <div>
+                <label>
+                    Username:
+                    <InputText @bind-Value="regFormModel.Name"></InputText>
+                </label>
+            </div>
+            <div>
+                <label>
+                    Password:
+                    <InputText type="password" @bind-Value="regFormModel.Password"></InputText>
+                </label>
+            </div>
+            <div>
+                <label>
+                    Confirm password:
+                    <InputText type="password" @bind-Value="regFormModel.PasswordConfirm"></InputText>
+                </label>
+            </div>
+            <div>
+                <label>
+                    Select role:
+                    <Select DataSource="Roles" type="role" @bind-Value="regFormModel.Role"></Select>
+                </label>
+            </div>
+            <div>
+                <button @onclick="TryReg">Submit</button>
+            </div>
+        </EditForm>
+        }
     </NotAuthorized>
     <Authorized>
         <button type="button" class="btn btn-primary" @onclick="TryLogout">Logout</button>
@@ -31,13 +73,48 @@
 @code {
     private LoginFormModel LoginFormModel { get; set; } = new();
 
+    private RegFormModel regFormModel { get; set; } = new();
+
+    private bool switchValue { get; set; }
+
+    [Inject]
+    private NavigationManager _navi { get; set; }
+
+    List<string> Roles = new List<string>
+    {
+        "Admin",
+        "Studio",
+        "User"
+    };
+
     private async Task TryLogin()
     {
         await WebsiteAuthenticator.LoginAsync(LoginFormModel);
+        _navi.NavigateTo("/home");
     }
 
     private async Task TryLogout()
     {
         await WebsiteAuthenticator.LogoutAsync();
     }
+
+    private async Task TryReg()
+    {
+        if (regFormModel.PasswordConfirm == regFormModel.Password)
+        {
+            await WebsiteAuthenticator.RegAsync(regFormModel);
+
+            await WebsiteAuthenticator.LoginAsync(new LoginFormModel()
+                {
+                    Username = regFormModel.Name,
+                    Password = regFormModel.Password
+                });
+            _navi.NavigateTo("/home");
+        }
+        else
+        {
+            _message.Error("Пароли не совпадают!");
+        }
+    }
+
 }
