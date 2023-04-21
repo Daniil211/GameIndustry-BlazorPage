@@ -23,12 +23,9 @@
     async Task<IEnumerable<string>> SearchHandler(string searchText)
     {
         await Task.Delay(2000);
-        if (searchText.Equals("test"))
+        if (string.IsNullOrEmpty(searchText))
             return Enumerable.Empty<string>();
-        return new List<string>()
-        {
-            "CD Project Red",
-            "Giants Software"
-        };
+        var games = repository.GetAllGames().Where(g => g.Name.Contains(searchText)).Select(g => g.Name);
+        return games;
     }
 }
