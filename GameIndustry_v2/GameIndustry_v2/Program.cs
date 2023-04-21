@@ -36,6 +36,7 @@ builder.Services.AddAuthorization(config =>
 });
 builder.Services.AddSingleton<IAuthorizationHandler, AdultRequirementHandler>();
 builder.Services.AddSingleton<IAuthorizationHandler, OverAgeRequirementHandler>();
+builder.Services.AddSingleton<ICurrentUserService, CurrentUserService>();
 
 //builder.Services.AddSingleton<IRepository, MockGamesRepository>();
 //Если у вас не отображает ваши изменения  после создания новой игры

@@ -12,10 +12,15 @@ namespace GameIndustry_v2.Data.Authentication
         private readonly ProtectedLocalStorage _protectedLocalStorage;
         private readonly IApplicationDbContext _context;
 
-        public WebsiteAuthenticator(ProtectedLocalStorage protectedLocalStorage, IApplicationDbContext context)
+        private readonly ICurrentUserService _currentUserService;
+
+        public WebsiteAuthenticator(ProtectedLocalStorage protectedLocalStorage, 
+            IApplicationDbContext context, 
+            ICurrentUserService currentUserService)
         {
             _protectedLocalStorage = protectedLocalStorage;
             _context = context;
+            _currentUserService = currentUserService;
         }
 
         public override async Task<AuthenticationState> GetAuthenticationStateAsync()
@@ -42,6 +47,8 @@ namespace GameIndustry_v2.Data.Authentication
         public async Task LoginAsync(LoginFormModel loginFormModel)
         {
             var (userInDatabase, isSuccess) = LookUpUser(loginFormModel.Username, loginFormModel.Password);
+            _currentUserService.AuthorizedUser = userInDatabase;
+
             var principal = new ClaimsPrincipal();
 
             if (isSuccess)
@@ -62,7 +69,9 @@ namespace GameIndustry_v2.Data.Authentication
             {
                 Username = regFormModel.Name,
                 Password = regFormModel.Password,
-                Role = regFormModel.Role
+                Role = regFormModel.Role,
+                DateCreated = DateTime.Now,
+                Age = 18
             });
 
             ((ApplicationDbContext)_context).SaveChanges();
