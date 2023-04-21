@@ -35,6 +35,15 @@ namespace Application.Persistence.DataSeeders
                     Age = 20,
                     IsPremiumMember = true,
                     Role = "Admin"
+                },
+                new()
+                {
+                    Id = 4,
+                    Username = "Studio",
+                    Password = "Studio",
+                    Age = 20,
+                    IsPremiumMember = true,
+                    Role = "Studio"
                 }
             };
             modelBuilder.Entity<User>().HasData(Users);
