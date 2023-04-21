@@ -25,6 +25,15 @@ namespace GameIndustry_v2.Data.Repository
             return true;
         }
 
+        public bool CreateNewGenre(Genre genre)
+        {
+            if(genre is null)
+                return false;
+            _db.Add(genre);
+            _db.SaveChanges();
+            return true;
+        }
+
         public GameModel GetGameById(int id)
         {
             var game = _db.GameModels.FirstOrDefault(x => x.Id == id);

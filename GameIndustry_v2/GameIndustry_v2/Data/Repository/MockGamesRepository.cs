@@ -134,6 +134,11 @@ namespace GameIndustry_v2.Data.Repository
         public List<Genre> GetAllGenres() => _genres;
         public List<GameDeveloper> GetAllDevelopers() => _developers;
         public Genre GetGenreById(int id) => _genres.FirstOrDefault(x => x.Id.Equals(id));
+        public bool CreateNewGenre(Genre genre)
+        {
+            throw new NotImplementedException();
+        }
+
         public GameModel GetGameById(int id) => _games.FirstOrDefault(x => x.Id.Equals(id));
 
         public bool CreateNewGame(GameModel newGame)
