@@ -139,6 +139,11 @@ namespace GameIndustry_v2.Data.Repository
             throw new NotImplementedException();
         }
 
+        public bool CreateNewStudio(GameDeveloper Developer)
+        {
+            throw new NotImplementedException();
+        }
+
         public GameModel GetGameById(int id) => _games.FirstOrDefault(x => x.Id.Equals(id));
 
         public bool CreateNewGame(GameModel newGame)

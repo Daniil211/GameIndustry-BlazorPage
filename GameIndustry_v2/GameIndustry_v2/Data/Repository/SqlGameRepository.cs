@@ -24,6 +24,14 @@ namespace GameIndustry_v2.Data.Repository
             _db.SaveChanges();
             return true;
         }
+        public bool CreateNewStudio(GameDeveloper Developer)
+        {
+            if (Developer is null)
+                return false;
+            _db.Add(Developer);
+            _db.SaveChanges();
+            return true;
+        }
 
         public bool CreateNewGenre(Genre genre)
         {

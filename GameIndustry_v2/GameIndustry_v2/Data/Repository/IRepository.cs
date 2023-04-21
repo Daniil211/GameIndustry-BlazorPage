@@ -7,6 +7,7 @@ namespace GameIndustry_v2.Data.Repository
         List<GameModel> GetAllGames();
         bool CreateNewGame(GameModel newGame);
         bool CreateNewGenre(Genre genre);
+        bool CreateNewStudio(GameDeveloper Developer);
         GameModel GetGameById(int id);
         List<Genre> GetAllGenres();
         Genre GetGenreById(int id);
