@@ -1,14 +1,14 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace DbAccess.Models
+namespace Application.Persistence.Models;
+
+public class Genre
 {
-    public class Genre
-    {
-        public int Id { get; set; }
-        [Required]
-        [MaxLength(50)]
-        public string Name { get; set; }
-        //public List<GamesGenres> GamesGenres { get; set; } = new List<GamesGenres>();
-        public IEnumerable<GameModel> Games { get; set; }
-    }
+    public int Id { get; set; }
+
+    [Required]
+    [MaxLength(50)]
+    public string Name { get; set; }
+
+    public virtual List<GameModel>? Games { get; set; }
 }

@@ -1,5 +1,6 @@
 ﻿@page "/"
 @page "/index"
+@using Application.Persistence.Models
 @inject IRepository repository
 
 <Typeahead OnSearchHandler="SearchHandler" OnPlaceHolder="Type some here...">

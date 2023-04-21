@@ -1,5 +1,5 @@
-﻿using DbAccess;
-using DbAccess.Models;
+﻿using Application.Persistence;
+using Application.Persistence.Models;
 
 namespace GameIndustry_v2.Data.Repository
 {
