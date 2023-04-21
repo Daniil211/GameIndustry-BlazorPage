@@ -177,7 +177,7 @@
     private async Task TryLogin()
     {
         await WebsiteAuthenticator.LoginAsync(LoginFormModel);
-        _navi.NavigateTo("/home");
+        _navi.NavigateTo("/");
     }
 
     private async Task TryReg()
@@ -191,7 +191,7 @@
                     Username = regFormModel.Name,
                     Password = regFormModel.Password
                 });
-            _navi.NavigateTo("/home");
+            _navi.NavigateTo("/");
         }
         else
         {
