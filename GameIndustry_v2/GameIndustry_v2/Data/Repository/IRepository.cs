@@ -12,6 +12,7 @@ namespace GameIndustry_v2.Data.Repository
         List<Genre> GetAllGenres();
         Genre GetGenreById(int id);
         List<GameModel> RemoveGame(GameModel game);
+        List<GameModel> UpdateGame(GameModel game);
         bool EditGenre(Genre editedGenre);
         List<GameDeveloper> GetAllDevelopers();
     }

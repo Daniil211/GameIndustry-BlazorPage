@@ -116,6 +116,10 @@ namespace GameIndustry_v2.Data.Repository
         {
             throw new NotImplementedException();
         }
+        public List<GameModel> UpdateGame(GameModel game)
+        {
+            throw new NotImplementedException();
+        }
 
         public bool EditGenre(Genre editedGenre)
         {

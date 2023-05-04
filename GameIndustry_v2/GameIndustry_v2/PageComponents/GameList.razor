@@ -22,24 +22,51 @@ else if (ListOfItems.Count == 0)
 }
 else
 {
+    <div class="typeahead">
+        <div class="typeahead-contols">
+            <input type="text" class="typeahead-input" autocomplete="off" placeholder="New Name..." @bind="newGameName">
+        </div>
+    </div>
+    
     <div class="row ">
         @foreach (var item in ListOfItems)
         {
-            <IndividualGame Game="item" OnDeleteGame="DeleteGame"/>
+            <IndividualGame Game="item" OnDeleteGame="DeleteGame" OnEditGame="EditGame"/>
         }
     </div>
 }
 
-@code { 
-    [Parameter] 
-    public List<GameModel> ListOfItems { get; set; } 
 
-    void DeleteGame(GameModel game) 
-    { 
-    // Remove game from the list
+@code {
+    [Parameter]
+    public List<GameModel> ListOfItems { get; set; }
+
+    private string newGameName;
+
+    void DeleteGame(GameModel game)
+    {
+        // Remove game from the list
         ListOfItems.Remove(game);
         _db.RemoveGame(game);
-            //_db.SaveChanges();
-        
-    } 
+    }
+
+    void EditGame(GameModel game)
+    {
+        // Find the game in the list
+        var gameToEdit = ListOfItems.FirstOrDefault(g => g.Id == game.Id);
+
+        if (gameToEdit != null)
+        {
+            // Update the game's name
+            gameToEdit.Name = newGameName;
+
+            // Update the game in the database
+            _db.UpdateGame(gameToEdit);
+        }
+    }
+
+    void UpdateGame()
+    {
+        EditGame(ListOfItems.FirstOrDefault());
+    }
 }

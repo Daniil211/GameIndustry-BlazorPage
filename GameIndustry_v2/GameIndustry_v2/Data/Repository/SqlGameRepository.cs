@@ -1,5 +1,6 @@
 ﻿using Application.Persistence;
 using Application.Persistence.Models;
+using GameIndustry_v2.Pages.GenrePages;
 
 namespace GameIndustry_v2.Data.Repository
 {
@@ -84,6 +85,13 @@ namespace GameIndustry_v2.Data.Repository
         {
            // var games = _db.GameModels.ToList();
             _db.Remove(game);
+            _db.SaveChanges();
+            var games = _db.GameModels.ToList();
+            return games;
+        }
+        public List<GameModel> UpdateGame(GameModel game)
+        {
+            _db.Update(game);
             _db.SaveChanges();
             var games = _db.GameModels.ToList();
             return games;

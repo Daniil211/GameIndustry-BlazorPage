@@ -29,7 +29,9 @@
         <Authorized>
             <div class="game-card-footer">
                 <div class="btn-group my-3 text-center" role="group">
-                    <a class="btn btn-outline-info" href="#"><i class="fas fa-edit"></i></a>
+                    <button type="button" class="btn btn-outline-info" @onclick="(() => OnEditGame.InvokeAsync(Game))">
+                        <i class="fas fa-edit"></i>
+                    </button>
                     <button type="button" class="btn btn-outline-danger" @onclick="(() => OnDeleteGame.InvokeAsync(Game))">
                         <i class="fas fa-trash-alt"></i>
                     </button>
@@ -45,6 +47,8 @@
     public GameModel Game { get; set; }
     [Parameter]
     public EventCallback<GameModel> OnDeleteGame { get; set; }
+    [Parameter]
+    public EventCallback<GameModel> OnEditGame { get; set; }
 
     string url = string.Empty;
 
