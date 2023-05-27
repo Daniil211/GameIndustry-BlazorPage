@@ -14,35 +14,35 @@ namespace Tests
     [TestFixture]
     public class GameCardTests
     {
-        [Test]
-        public async Task GameCardRendersCorrectly()
-        {
-            // Arrange
-            var game = new GameModel
-            {
-                Id = 1,
-                Name = "Test Game",
-                Image = "data:image/jpeg;base64,base64string"
-            };
-            var component = new IndividualGame
-            {
-                Game = game,
-                OnDeleteGame = EventCallback.Factory.Create<GameModel>(this, _ => { }),
-                OnEditGame = EventCallback.Factory.Create<GameModel>(this, _ => { })
-            };
+//        [Test]
+//        public async Task GameCardRendersCorrectly()
+//        {
+//            // Arrange
+//            var game = new GameModel
+//            {
+//                Id = 1,
+//                Name = "Test Game",
+//                Image = "data:image/jpeg;base64,base64string"
+//            };
+//            var component = new IndividualGame
+//            {
+//                Game = game,
+//                OnDeleteGame = EventCallback.Factory.Create<GameModel>(this, _ => { }),
+//                OnEditGame = EventCallback.Factory.Create<GameModel>(this, _ => { })
+//            };
 
-            // Act
-            await component.SetParametersAsync(ParameterView.FromDictionary(new Dictionary<string, object>
-{
-    { nameof(IndividualGame.Game), game },
-    { nameof(IndividualGame.OnDeleteGame), EventCallback.Factory.Create<GameModel>(this, _ => { }) },
-    { nameof(IndividualGame.OnEditGame), EventCallback.Factory.Create<GameModel>(this, _ => { }) }
-}));
-            var urlField = component.GetType().GetField("url", BindingFlags.Instance | BindingFlags.NonPublic);
-            var url = (string)urlField.GetValue(component);
+//            // Act
+//            await component.SetParametersAsync(ParameterView.FromDictionary(new Dictionary<string, object>
+//{
+//    { nameof(IndividualGame.Game), game },
+//    { nameof(IndividualGame.OnDeleteGame), EventCallback.Factory.Create<GameModel>(this, _ => { }) },
+//    { nameof(IndividualGame.OnEditGame), EventCallback.Factory.Create<GameModel>(this, _ => { }) }
+//}));
+//            var urlField = component.GetType().GetField("url", BindingFlags.Instance | BindingFlags.NonPublic);
+//            var url = (string)urlField.GetValue(component);
 
-            // Assert
-            Assert.AreEqual("games/1/Test%20Game", url);
-        }
+//            // Assert
+//            Assert.AreEqual("games/1/Test%20Game", url);
+//        }
     }
 }

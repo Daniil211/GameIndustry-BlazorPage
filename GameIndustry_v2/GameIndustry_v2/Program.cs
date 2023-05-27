@@ -10,9 +10,7 @@ using Tewr.Blazor.FileReader;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseMySql(builder.Configuration["ConnectionStrings:DbConnection"], new MySqlServerVersion(new Version(8, 0, 25)),
-        options => options.EnableRetryOnFailure())
-);
+    options.UseSqlServer("name=ConnectionStrings:DefaultConnection"));
 
 // Add services to the container.
 builder.Services.AddRazorPages();
