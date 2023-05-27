@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MahApps.Metro.Controls;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,7 +19,7 @@ namespace GameIndustry_v2.WPF
     /// <summary>
     /// Логика взаимодействия для Authorization.xaml
     /// </summary>
-    public partial class Authorization : Window
+    public partial class Authorization : MetroWindow
     {
         public Authorization()
         {
