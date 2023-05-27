@@ -108,5 +108,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Application.Persistence.Desktop\Application.Persistence.Desktop.csproj">
+      <Project>{b318d08e-99d3-4118-81e2-8107094511e9}</Project>
+      <Name>Application.Persistence.Desktop</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
