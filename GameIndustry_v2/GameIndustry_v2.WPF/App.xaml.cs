@@ -11,7 +11,7 @@ namespace GameIndustry_v2.WPF
     /// <summary>
     /// Логика взаимодействия для App.xaml
     /// </summary>
-    public partial class App : Application
+    public partial class App : System.Windows.Application
     {
     }
 }

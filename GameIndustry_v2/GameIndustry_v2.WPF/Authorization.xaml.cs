@@ -13,6 +13,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Application.Persistence.Desktop;
+using Application.Persistence.Desktop.Models;
+using System.Data.Entity;
 
 namespace GameIndustry_v2.WPF
 {
@@ -24,6 +27,53 @@ namespace GameIndustry_v2.WPF
         public Authorization()
         {
             InitializeComponent();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            
+                using (ModelContainer db = new ModelContainer())
+                {
+                    if (txtLogin.Text != null && password.Password != null)
+                    {
+                        foreach (Users user in db.Users)
+                        {
+
+                            if (txtLogin.Text.Equals(user.Username) &&
+                                     password.Password.Equals(user.Password) && user.Role.Equals("Admin"))
+                            {
+                                MessageBox.Show("Вход успешен!");
+                                StartWindowUser Sform = new StartWindowUser();
+                                this.Hide();
+                                Sform.Show();
+                                return;
+                            }
+                            else if (txtLogin.Text.Equals(user.Username) &&
+                                     password.Password.Equals(user.Password) && user.Role.Equals("Studio"))
+                            {
+                                MessageBox.Show("Вход успешен!");
+                                StartWindowStudio form = new StartWindowStudio();
+                                this.Hide();
+                                form.Show();
+                                return;
+                            }
+                            else if (txtLogin.Text.Equals(user.Username) &&
+                                     password.Password.Equals(user.Password) && user.Role.Equals("User"))
+                            {
+                                MessageBox.Show("Вход успешен!");
+                                StartWindowUser form = new StartWindowUser();
+                                this.Hide();
+                                form.Show();
+                                return;
+                            }
+                        }
+
+                        MessageBox.Show("Логин или пароль указан неверно!");
+                    }
+                    else
+                        MessageBox.Show("Введите все поля");
+                }
+        
         }
     }
 }
