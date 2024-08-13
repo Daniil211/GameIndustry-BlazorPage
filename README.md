@@ -1,6 +1,6 @@
 In this development project using ASP.NET Blazor technologies, the "Play Store" project was developed. The main topics and features of this framework were touched upon.
 Namely, the following technology topics were considered in practice:
--EventCallBack;
+- EventCallBack;
 -RenderFragment;
 -Generic RenderFragment;
 -Methods of the life cycle of the component;
